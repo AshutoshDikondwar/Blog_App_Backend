@@ -40,4 +40,11 @@ public class GlobalExceptionHandler {
 		String message = ex.getMessage();
 		return new ResponseEntity<ApiResponse>(new ApiResponse(message, false), HttpStatus.METHOD_NOT_ALLOWED);
 	}
+	
+	@ExceptionHandler(ApiExceptions.class)
+	public ResponseEntity<ApiResponse> handleApiExceptions(ApiExceptions ex) {
+		String message = ex.getMessage();
+		ApiResponse apiResponse = new ApiResponse(message, false);
+		return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+	}
 }
